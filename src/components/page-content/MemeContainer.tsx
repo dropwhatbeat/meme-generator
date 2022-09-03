@@ -32,14 +32,10 @@ const MemeContainer: React.FC<IMemeProps> = ({ saveMeme, selectedMeme }) => {
   const onSaveMeme = async () => {
     var memeTitle = (document.getElementById("saveMeme") as HTMLInputElement)
       .value;
-    (document.getElementById("saveButton") as HTMLButtonElement).disabled =
-      true;
 
     if (meme !== "" && text !== "") {
       getMeme().then(() => {
         saveMeme({ [meme]: memeTitle ? memeTitle : text });
-        (document.getElementById("saveButton") as HTMLButtonElement).disabled =
-          false;
       });
     }
   };

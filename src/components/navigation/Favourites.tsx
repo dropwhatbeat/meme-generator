@@ -1,7 +1,7 @@
 import React from "react";
 import { IFavProps } from "../../memeTypes";
 import "./Favourites.scss";
-import bin from "../../bin-icon.png";
+import bin from "../../assets/trash-can.png";
 
 const Favourites: React.FC<IFavProps> = ({ listData, deleteData, seeMeme }) => {
   const handleDelete = (text: string) => {

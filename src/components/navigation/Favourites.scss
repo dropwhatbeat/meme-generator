@@ -35,10 +35,15 @@
             display: flex;
             justify-content: space-between;
             font-family: 'ProximaNova';
-            font-size: 18px;
+            font-size: 16px;
             line-height: 18px;
-            color:#ffffff;
+            color:#363636;
             margin: 10px;
+            padding: 5px;
+            background-color: rgb(237, 237, 237);
+            outline-color: #fcfcfc;
+            border-radius: 5px;
+
         }
 
         .title{
