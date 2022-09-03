@@ -5,7 +5,8 @@ import "./MemeContainer.scss";
 const MemeContainer: React.FC<IMemeProps> = ({ saveMeme }) => {
   const memeAPI = "https://meme-api.herokuapp.com/gimme/1";
   const [meme, setMeme] = useState("");
-  const [text, setText] = useState("");
+  const [text, setText] = useState("Meme Title");
+  const [title, setTitle] = useState(text)
 
   const getMeme = () => {
     fetch(memeAPI)
@@ -14,6 +15,7 @@ const MemeContainer: React.FC<IMemeProps> = ({ saveMeme }) => {
         console.log(data);
         setMeme(data.memes[0]?.url);
         setText(data.memes[0]?.title);
+        setTitle(data.memes[0]?.title);
       });
     (document.getElementById("saveMeme") as HTMLInputElement).value = "";
   };
@@ -24,7 +26,7 @@ const MemeContainer: React.FC<IMemeProps> = ({ saveMeme }) => {
   const onSaveMeme = () => {
     var memeTitle = (document.getElementById("saveMeme") as HTMLInputElement)
       .value;
-    setText(memeTitle);
+    setTitle(memeTitle ? memeTitle : text);
   };
 
   return (
@@ -36,7 +38,7 @@ const MemeContainer: React.FC<IMemeProps> = ({ saveMeme }) => {
         <div className="separator" />
         <input
           className="text-box"
-          placeholder={text ? text : "Meme Title"}
+          placeholder={text}
           id="saveMeme"
           onChange={() => onSaveMeme()}
         ></input>
@@ -45,7 +47,7 @@ const MemeContainer: React.FC<IMemeProps> = ({ saveMeme }) => {
             className="label-left"
             onClick={() => {
               onSaveMeme();
-              saveMeme(text);
+              saveMeme(title);
             }}
           >
             SAVE MEME
