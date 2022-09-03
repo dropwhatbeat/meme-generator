@@ -1,30 +1,41 @@
 import "./MainPage.scss";
 import { useState } from "react";
 import Favourites from "./navigation/Favourites";
-import { useEffect } from "react";
-import { TabsState } from "../memeTypes";
+import { IMemeType, TabsState } from "../memeTypes";
 import MemeContainer from "./page-content/MemeContainer";
 import TopBar from "./navigation/TopBar";
 
 const MainPage = () => {
   const [selectedTab, setSelectedTab] = useState(TabsState.MAIN);
-  const [favList, setFavList] = useState<any[]>([]);
-  const [checkMeme, setCheckMeme] = useState("");
+  const [favList, setFavList] = useState<{}>({});
+  const [checkMeme, setCheckMeme] = useState({});
 
-  useEffect(() => {
-    console.error(selectedTab);
-  }, [selectedTab]);
+  const handleSave = (meme: IMemeType) => {
+    const memeKey = Object.keys(meme)[0] as string;
+    const memeValue = Object.values(meme)[0] as string;
 
-  useEffect(() => {
-    console.error(favList);
-  }, [favList]);
+    if (Object.keys(favList).includes(memeKey)) {
+      let copy = { ...favList } as IMemeType;
+      delete copy[memeKey];
+      setFavList(() => ({ ...{ [memeKey]: memeValue }, ...copy }));
+    } else {
+      setFavList((favList) => ({ ...favList, ...{ [memeKey]: memeValue } }));
+    }
+    setCheckMeme("");
+  };
+
+  const handleDelete = (key: string) => {
+    let copy = { ...favList } as IMemeType;
+    delete copy[key];
+    setFavList(() => ({ ...copy }));
+  };
 
   return (
     <div className="main-page">
       <Favourites
         listData={favList}
         deleteData={(data) => {
-          setFavList(favList.filter((item) => item !== data));
+          handleDelete(data);
         }}
         seeMeme={(meme) => setCheckMeme(meme)}
       />
@@ -37,10 +48,7 @@ const MainPage = () => {
       />
       <div className="content">
         <MemeContainer
-          saveMeme={(meme) => {
-            setFavList(favList.concat(meme));
-            setCheckMeme("")
-          }}
+          saveMeme={(meme) => handleSave(meme)}
           selectedMeme={checkMeme}
         />
       </div>

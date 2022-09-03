@@ -9,21 +9,19 @@ export enum TabsState {
 }
 
 export interface IFavProps {
-  listData: any[];
+  listData: IMemeType;
   deleteData: (text: string) => void;
-  seeMeme: (url: string) => void;
+  seeMeme: (meme: IMemeType) => void;
 }
 
 export interface IMemeProps {
-  saveMeme: (meme: {}) => void;
-  selectedMeme: {};
+  saveMeme: (meme: IMemeType) => void;
+  selectedMeme: IMemeType;
 }
 
 export interface IFavList {
-  favlist: any[];
+  favlist: IMemeType;
 }
-
 export interface IMemeType {
-  url: string;
-  title: string;
+  [key: string]: string
 }

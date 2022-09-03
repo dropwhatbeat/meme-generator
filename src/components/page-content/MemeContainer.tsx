@@ -7,11 +7,10 @@ const MemeContainer: React.FC<IMemeProps> = ({ saveMeme, selectedMeme }) => {
   const [meme, setMeme] = useState("");
   const [text, setText] = useState("Meme Title");
 
-  const getMeme = () => {
+  const getMeme = async () => {
     fetch(memeAPI)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setMeme(data.memes[0]?.url);
         setText(data.memes[0]?.title);
         (document.getElementById("saveMeme") as HTMLInputElement).value = "";
@@ -19,22 +18,22 @@ const MemeContainer: React.FC<IMemeProps> = ({ saveMeme, selectedMeme }) => {
   };
 
   useEffect(() => {
-    getMeme()
-  },[])
+    getMeme();
+  }, []);
 
-
-  useEffect(() =>{
-    console.error("selected" + selectedMeme);
+  useEffect(() => {
     setMeme(Object.keys(selectedMeme)[0] as string);
-    setText(Object.values(selectedMeme)[0] as string)
-  },[selectedMeme])
+    setText(Object.values(selectedMeme)[0] as string);
+  }, [selectedMeme]);
 
-
-  const onSaveMeme = () => {
+  const onSaveMeme = async () => {
     var memeTitle = (document.getElementById("saveMeme") as HTMLInputElement)
       .value;
-    saveMeme({ [meme]: memeTitle ? memeTitle : text });
-    getMeme();
+    if (meme !== "" && text !== "") {
+      getMeme().then(() => {
+        saveMeme({ [meme]: memeTitle ? memeTitle : text });
+      });
+    }
   };
 
   return (

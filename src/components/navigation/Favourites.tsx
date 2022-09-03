@@ -13,11 +13,14 @@ const Favourites: React.FC<IFavProps> = ({ listData, deleteData, seeMeme }) => {
       <div className="header">Favourites</div>
       <div className="fav-container">
         {listData &&
-          listData.map((data, index) => {
+          Object.keys(listData).map((data, index) => {
             return (
               <div className="fav-box" key={index}>
-                <span className="title" onClick={() => seeMeme(data)}>
-                  {Object.values(data)}
+                <span
+                  className="title"
+                  onClick={() => seeMeme({ [data]: listData[data] })}
+                >
+                  {listData[data]}
                 </span>
                 <img
                   src={bin}
