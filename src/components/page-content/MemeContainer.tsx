@@ -6,7 +6,6 @@ const MemeContainer: React.FC<IMemeProps> = ({ saveMeme }) => {
   const memeAPI = "https://meme-api.herokuapp.com/gimme/1";
   const [meme, setMeme] = useState("");
   const [text, setText] = useState("");
-  const memeTitle = document.getElementById("saveMeme") as HTMLInputElement;
 
   const getMeme = () => {
     fetch(memeAPI)
@@ -16,14 +15,16 @@ const MemeContainer: React.FC<IMemeProps> = ({ saveMeme }) => {
         setMeme(data.memes[0]?.url);
         setText(data.memes[0]?.title);
       });
-    memeTitle.value = "";
+    (document.getElementById("saveMeme") as HTMLInputElement).value = "";
   };
   useEffect(() => {
     getMeme();
   }, []);
 
   const onSaveMeme = () => {
-    setText(memeTitle.value);
+    var memeTitle = (document.getElementById("saveMeme") as HTMLInputElement)
+      .value;
+    setText(memeTitle);
   };
 
   return (
@@ -40,7 +41,13 @@ const MemeContainer: React.FC<IMemeProps> = ({ saveMeme }) => {
           onChange={() => onSaveMeme()}
         ></input>
         <div className="bottom-label">
-          <button className="label-left" onClick={() => saveMeme(text)}>
+          <button
+            className="label-left"
+            onClick={() => {
+              onSaveMeme();
+              saveMeme(text);
+            }}
+          >
             SAVE MEME
           </button>
           <button className="label-right" onClick={() => getMeme()}>

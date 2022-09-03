@@ -9,7 +9,7 @@ import TopBar from "./navigation/TopBar";
 const MainPage = () => {
   const [selectedTab, setSelectedTab] = useState(TabsState.MAIN);
 
-  const [favList, setFavList] = useState([""]);
+  const [favList, setFavList] = useState<string[]>([]);
 
   useEffect(() => {
     console.error(selectedTab);
