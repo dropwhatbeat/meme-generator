@@ -1,26 +1,35 @@
 import "./MainPage.scss";
 import { useState } from "react";
 import Favourites from "./navigation/Favourites";
-import { IMemeType, TabsState } from "../memeTypes";
+import { IFavList, IMemeType, TabsState } from "../memeTypes";
 import MemeContainer from "./page-content/MemeContainer";
 import TopBar from "./navigation/TopBar";
 
 const MainPage = () => {
   const [selectedTab, setSelectedTab] = useState(TabsState.MAIN);
-  const [favList, setFavList] = useState<{}>({});
+  const [favList, setFavList] = useState<any | IFavList>({});
   const [checkMeme, setCheckMeme] = useState({});
 
   const handleSave = (meme: IMemeType) => {
     const memeKey = Object.keys(meme)[0] as string;
     const memeValue = Object.values(meme)[0] as string;
 
-    if (Object.keys(favList).includes(memeKey)) {
-      let copy = { ...favList } as IMemeType;
-      delete copy[memeKey];
-      setFavList(() => ({ ...{ [memeKey]: memeValue }, ...copy }));
-    } else {
-      setFavList((favList) => ({ ...favList, ...{ [memeKey]: memeValue } }));
+    if (memeKey && memeValue) {
+      if (
+        Object.keys(favList).includes(memeKey) &&
+        memeValue !== (favList[memeKey] as string)
+      ) {
+        let copy = { ...favList } as IMemeType;
+        delete copy[memeKey];
+        setFavList(() => ({ ...{ [memeKey]: memeValue }, ...copy }));
+      } else {
+        setFavList((favList: IFavList) => ({
+          ...favList,
+          ...{ [memeKey]: memeValue },
+        }));
+      }
     }
+
     setCheckMeme("");
   };
 
