@@ -3,7 +3,7 @@ import { IFavProps } from "../../memeTypes";
 import "./Favourites.scss";
 import bin from "../../bin-icon.png";
 
-const Favourites: React.FC<IFavProps> = ({ listData, deleteData }) => {
+const Favourites: React.FC<IFavProps> = ({ listData, deleteData, seeMeme }) => {
   const handleDelete = (text: string) => {
     deleteData(text);
   };
@@ -16,7 +16,9 @@ const Favourites: React.FC<IFavProps> = ({ listData, deleteData }) => {
           listData.map((data, index) => {
             return (
               <div className="fav-box" key={index}>
-                <span className="title"> {data}</span>
+                <span className="title" onClick={() => seeMeme(data)}>
+                  {Object.values(data)}
+                </span>
                 <img
                   src={bin}
                   className="bin"

@@ -2,11 +2,10 @@ import { useEffect, useState } from "react";
 import { IMemeProps } from "../../memeTypes";
 import "./MemeContainer.scss";
 
-const MemeContainer: React.FC<IMemeProps> = ({ saveMeme }) => {
+const MemeContainer: React.FC<IMemeProps> = ({ saveMeme, selectedMeme }) => {
   const memeAPI = "https://meme-api.herokuapp.com/gimme/1";
   const [meme, setMeme] = useState("");
   const [text, setText] = useState("Meme Title");
-  const [title, setTitle] = useState(text)
 
   const getMeme = () => {
     fetch(memeAPI)
@@ -15,18 +14,27 @@ const MemeContainer: React.FC<IMemeProps> = ({ saveMeme }) => {
         console.log(data);
         setMeme(data.memes[0]?.url);
         setText(data.memes[0]?.title);
-        setTitle(data.memes[0]?.title);
+        (document.getElementById("saveMeme") as HTMLInputElement).value = "";
       });
-    (document.getElementById("saveMeme") as HTMLInputElement).value = "";
   };
+
   useEffect(() => {
-    getMeme();
-  }, []);
+    getMeme()
+  },[])
+
+
+  useEffect(() =>{
+    console.error("selected" + selectedMeme);
+    setMeme(Object.keys(selectedMeme)[0] as string);
+    setText(Object.values(selectedMeme)[0] as string)
+  },[selectedMeme])
+
 
   const onSaveMeme = () => {
     var memeTitle = (document.getElementById("saveMeme") as HTMLInputElement)
       .value;
-    setTitle(memeTitle ? memeTitle : text);
+    saveMeme({ [meme]: memeTitle ? memeTitle : text });
+    getMeme();
   };
 
   return (
@@ -36,18 +44,12 @@ const MemeContainer: React.FC<IMemeProps> = ({ saveMeme }) => {
       </div>
       <div className="bottom-container">
         <div className="separator" />
-        <input
-          className="text-box"
-          placeholder={text}
-          id="saveMeme"
-          onChange={() => onSaveMeme()}
-        ></input>
+        <input className="text-box" placeholder={text} id="saveMeme"></input>
         <div className="bottom-label">
           <button
             className="label-left"
             onClick={() => {
               onSaveMeme();
-              saveMeme(title);
             }}
           >
             SAVE MEME

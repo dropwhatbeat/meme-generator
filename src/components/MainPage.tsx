@@ -8,12 +8,16 @@ import TopBar from "./navigation/TopBar";
 
 const MainPage = () => {
   const [selectedTab, setSelectedTab] = useState(TabsState.MAIN);
-
-  const [favList, setFavList] = useState<string[]>([]);
+  const [favList, setFavList] = useState<any[]>([]);
+  const [checkMeme, setCheckMeme] = useState("");
 
   useEffect(() => {
     console.error(selectedTab);
   }, [selectedTab]);
+
+  useEffect(() => {
+    console.error(favList);
+  }, [favList]);
 
   return (
     <div className="main-page">
@@ -22,6 +26,7 @@ const MainPage = () => {
         deleteData={(data) => {
           setFavList(favList.filter((item) => item !== data));
         }}
+        seeMeme={(meme) => setCheckMeme(meme)}
       />
       <TopBar
         tab={selectedTab}
@@ -32,9 +37,11 @@ const MainPage = () => {
       />
       <div className="content">
         <MemeContainer
-          saveMeme={(text) => {
-            setFavList(favList.concat(text));
+          saveMeme={(meme) => {
+            setFavList(favList.concat(meme));
+            setCheckMeme("")
           }}
+          selectedMeme={checkMeme}
         />
       </div>
     </div>
