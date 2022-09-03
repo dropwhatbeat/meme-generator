@@ -8,12 +8,15 @@ const MemeContainer: React.FC<IMemeProps> = ({ saveMeme, selectedMeme }) => {
   const [text, setText] = useState("Meme Title");
 
   const getMeme = async () => {
+    (document.getElementById("button") as HTMLButtonElement).disabled = true;
     fetch(memeAPI)
       .then((response) => response.json())
       .then((data) => {
         setMeme(data.memes[0]?.url);
         setText(data.memes[0]?.title);
         (document.getElementById("saveMeme") as HTMLInputElement).value = "";
+        (document.getElementById("button") as HTMLButtonElement).disabled =
+          false;
       });
   };
 
@@ -29,9 +32,14 @@ const MemeContainer: React.FC<IMemeProps> = ({ saveMeme, selectedMeme }) => {
   const onSaveMeme = async () => {
     var memeTitle = (document.getElementById("saveMeme") as HTMLInputElement)
       .value;
+    (document.getElementById("saveButton") as HTMLButtonElement).disabled =
+      true;
+
     if (meme !== "" && text !== "") {
       getMeme().then(() => {
         saveMeme({ [meme]: memeTitle ? memeTitle : text });
+        (document.getElementById("saveButton") as HTMLButtonElement).disabled =
+          false;
       });
     }
   };
@@ -50,10 +58,17 @@ const MemeContainer: React.FC<IMemeProps> = ({ saveMeme, selectedMeme }) => {
             onClick={() => {
               onSaveMeme();
             }}
+            id="saveButton"
           >
             SAVE MEME
           </button>
-          <button className="label-right" onClick={() => getMeme()}>
+          <button
+            className="label-right"
+            onClick={() => {
+              getMeme();
+            }}
+            id="button"
+          >
             GET NEW MEME
           </button>
         </div>
