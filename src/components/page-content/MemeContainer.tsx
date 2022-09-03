@@ -54,7 +54,7 @@ const MemeContainer: React.FC<IMemeProps> = ({ saveMeme, selectedMeme }) => {
         <input className="text-box" placeholder={text} id="saveMeme"></input>
         <div className="bottom-label">
           <button
-            className="label-left"
+            className="button"
             onClick={() => {
               onSaveMeme();
             }}
@@ -63,7 +63,7 @@ const MemeContainer: React.FC<IMemeProps> = ({ saveMeme, selectedMeme }) => {
             SAVE MEME
           </button>
           <button
-            className="label-right"
+            className="button"
             onClick={() => {
               getMeme();
             }}

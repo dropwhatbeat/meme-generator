@@ -45,11 +45,13 @@
             max-width: 200px;
             max-height: 18px;
             overflow: hidden;
+            cursor: pointer;
         }
 
         .bin {
             width: 20px;
             height: 20px; 
+            cursor: pointer;
         }
     }
 }

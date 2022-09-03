@@ -24,13 +24,14 @@
         justify-content: space-between;
 
         .tab{
-
             &_true{
                 color: #0083E3;
                 border-bottom: 3px solid #0083E3;
                 line-height: 35.5px;
                 padding-right: 2%;
                 padding-left: 2%;
+                cursor: pointer;
+
 
             }
             &_false{
@@ -38,6 +39,8 @@
                 padding-right: 2%;
                 padding-left: 2%;
                 line-height: 35.5px;
+                cursor: pointer;
+
             }
         }
     }
