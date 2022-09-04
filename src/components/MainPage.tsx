@@ -53,6 +53,7 @@ const MainPage = () => {
     let copy = { ...favList } as IMemeType;
     delete copy[key];
     setFavList(() => ({ ...copy }));
+    setScroll(SCROLL_TYPE.NONE);
   };
 
   return (
