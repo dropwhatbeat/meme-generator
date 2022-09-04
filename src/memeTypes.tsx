@@ -12,6 +12,7 @@ export interface IFavProps {
   listData: IMemeType;
   deleteData: (text: string) => void;
   seeMeme: (meme: IMemeType) => void;
+  scroll: SCROLL_TYPE;
 }
 
 export interface IMemeProps {
@@ -29,4 +30,5 @@ export interface IMemeType {
 export enum SCROLL_TYPE {
   UP = "UP",
   DOWN = "DOWN",
+  NONE = "NONE"
 }

@@ -11,6 +11,7 @@ const MainPage = () => {
     JSON.parse(localStorage.getItem("favList") as string) || {}
   );
   const [checkMeme, setCheckMeme] = useState({});
+  const [scroll, setScroll] = useState(SCROLL_TYPE.NONE);
 
   useEffect(() => {
     localStorage.setItem("favList", JSON.stringify(favList));
@@ -32,18 +33,16 @@ const MainPage = () => {
         Object.keys(favList).includes(memeKey) &&
         memeValue !== (favList[memeKey] as string)
       ) {
-        updateScroll(SCROLL_TYPE.UP);
+        setScroll(SCROLL_TYPE.UP);
         let copy = { ...favList } as IMemeType;
         delete copy[memeKey];
         setFavList(() => ({ ...{ [memeKey]: memeValue }, ...copy }));
       } else {
-        if (memeValue !== (favList[memeKey] as string)) {
-          updateScroll(SCROLL_TYPE.DOWN);
-        }
         setFavList((favList: IFavList) => ({
           ...favList,
           ...{ [memeKey]: memeValue },
         }));
+        setScroll(SCROLL_TYPE.DOWN);
       }
     }
 
@@ -64,6 +63,7 @@ const MainPage = () => {
           handleDelete(data);
         }}
         seeMeme={(meme) => setCheckMeme(meme)}
+        scroll={scroll}
       />
       <TopBar
         tab={selectedTab}

@@ -35,6 +35,10 @@
         }
 
     }
+
+    button:disabled {
+        opacity: 0.6;
+          }
     
     .bottom-container{
         text-align: center;
@@ -53,7 +57,11 @@
             justify-content: space-evenly;
             .button{
                 cursor: pointer;
+                color: #FFFFFF;
+                background-color: #0d507a;
                 margin: 0px 10px 5px 10px;
+                border-radius: 5px;
+                padding: 5px;
             }
         }
         .separator{

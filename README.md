@@ -1,8 +1,7 @@
 # Meme Generator
-
 ## Running the project on local
-
 ### `npm install`
+
 Installs dependencies. Ensure that you have npm installed.
 ### `npm start`
 
@@ -16,4 +15,8 @@ You may also see any lint errors in the console.
 
 Project is also currently hosted on https://meme-generator-orcin.vercel.app/ .
 Local cache of saved data will be stored on the browser.
+
+## Resources
+
+API from https://github.com/D3vd/Meme_Api .
 

@@ -57,11 +57,12 @@
         scrollbar-width: none; /* Firefox */
       }
 
+
     .fav-container  {
         overflow-y: auto;
         width: 90%;
-        padding: 10px 10px 30px 10px;
-
+        margin-bottom: 20px;
+        
         .fav-box{
             display: flex;
             justify-content: space-between;
