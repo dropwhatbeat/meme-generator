@@ -1,7 +1,6 @@
 .element::-webkit-scrollbar { width: 0 !important }
 
 
-
 .main-bar{
     background-color: #042235;
     width: 20%;
@@ -18,7 +17,7 @@
         font-size: 30px;
         line-height: 36px;
         color:#ffffff;
-        margin: 10% 10px;
+        margin: 15px 10px 5px 10px;
     }
     .title{
         width: 90%;
@@ -36,7 +35,7 @@
         font-size: 16px;
         line-height: 36px;
         color:#ffffff;
-        margin: 15% 10px;
+        margin: 20px 10px 5px 10px;
         }
         .title{
             width: 90%;
@@ -62,7 +61,7 @@
         overflow-y: auto;
         width: 90%;
         margin-bottom: 20px;
-        
+
         .fav-box{
             display: flex;
             justify-content: space-between;
