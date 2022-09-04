@@ -2,7 +2,7 @@
 
 .main-bar{
     background-color: #042235;
-    width: 300px;
+    width: 20%;
     height: 100vh;
     position: fixed;
     display: flex;
@@ -28,7 +28,7 @@
 
     .fav-container  {
         overflow-y: auto;
-        width: calc(100% - 40px);
+        width: 90%;
         padding: 10px;
 
         .fav-box{
@@ -43,7 +43,7 @@
             background-color: rgb(237, 237, 237);
             outline-color: #fcfcfc;
             border-radius: 5px;
-
+            cursor: pointer;
         }
 
         .title{
