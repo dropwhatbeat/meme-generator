@@ -1,6 +1,9 @@
 # Meme Generator
 
 ## Running the project on local
+
+### `npm install`
+Installs dependencies. Ensure that you have npm installed.
 ### `npm start`
 
 Runs the app in the development mode.\
