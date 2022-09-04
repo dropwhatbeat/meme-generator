@@ -16,12 +16,6 @@ const TopBar: React.FC<ITabsProps> = (props: ITabsProps) => {
         >
           Generate Meme
         </span>
-        <span
-          className={`tab_${props.tab === TabsState.GENERATE}`}
-          onClick={() => handleTabClick(TabsState.GENERATE)}
-        >
-          Make Your Own
-        </span>
       </div>
     </div>
   );

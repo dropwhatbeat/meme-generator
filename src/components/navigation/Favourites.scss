@@ -1,5 +1,7 @@
 .element::-webkit-scrollbar { width: 0 !important }
 
+
+
 .main-bar{
     background-color: #042235;
     width: 20%;
@@ -8,6 +10,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    /* If the screen size is 601px or more, set the font-size of <div> to 80px */
+    @media only screen and (min-width: 801px) {
     .header {
         font-family: 'ProximaNova';
         font-size: 30px;
@@ -15,7 +19,19 @@
         color:#ffffff;
         margin: 36px 10px;
     }
-
+        }
+  
+  /* If the screen size is 600px or less, set the font-size of <div> to 30px */
+    @media only screen and (max-width: 800px) {
+    .header {
+        font-family: 'ProximaNova';
+        font-size: 16px;
+        line-height: 36px;
+        color:#ffffff;
+        margin: 36px 10px;
+        }
+    }
+    
     .fav-container::-webkit-scrollbar {
         display: none;
       }
@@ -47,15 +63,15 @@
         }
 
         .title{
-            max-width: 200px;
+            width: 90%;
             max-height: 18px;
             overflow: hidden;
             cursor: pointer;
         }
 
         .bin {
-            width: 20px;
-            height: 20px; 
+            width: 15px;
+            height: 15px; 
             cursor: pointer;
         }
     }

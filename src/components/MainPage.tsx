@@ -65,7 +65,6 @@ const MainPage = () => {
         tab={selectedTab}
         setSelectedTab={(state) => {
           setSelectedTab(state);
-          console.error(selectedTab);
         }}
       />
       <div className="content">

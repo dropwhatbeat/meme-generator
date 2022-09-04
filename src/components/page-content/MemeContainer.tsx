@@ -21,7 +21,9 @@ const MemeContainer: React.FC<IMemeProps> = ({ saveMeme, selectedMeme }) => {
   };
 
   useEffect(() => {
-    getMeme();
+    if (meme === "") {
+      getMeme();
+    }
   }, []);
 
   useEffect(() => {
@@ -43,7 +45,9 @@ const MemeContainer: React.FC<IMemeProps> = ({ saveMeme, selectedMeme }) => {
   return (
     <div className="meme-view">
       <div className="content-container">
-        <img src={meme} className="image" />
+        <div className="image-wrapper">
+          <img src={meme} className="image" />
+        </div>
       </div>
       <div className="bottom-container">
         <div className="separator" />
