@@ -29,8 +29,7 @@
             .image {
                 max-width: 90%;
                 max-height: 90%; 
-                object-fit: cover;
-
+                object-fit: contain;
             }
             
         }
