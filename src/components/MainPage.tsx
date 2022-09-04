@@ -29,14 +29,15 @@ const MainPage = () => {
     const memeValue = Object.values(meme)[0] as string;
 
     if (memeKey && memeValue) {
-      if (
-        Object.keys(favList).includes(memeKey) &&
-        memeValue !== (favList[memeKey] as string)
-      ) {
-        setScroll(SCROLL_TYPE.UP);
-        let copy = { ...favList } as IMemeType;
-        delete copy[memeKey];
-        setFavList(() => ({ ...{ [memeKey]: memeValue }, ...copy }));
+      if (Object.keys(favList).includes(memeKey)) {
+        if (memeValue !== (favList[memeKey] as string)) {
+          setScroll(SCROLL_TYPE.UP);
+          let copy = { ...favList } as IMemeType;
+          delete copy[memeKey];
+          setFavList(() => ({ ...{ [memeKey]: memeValue }, ...copy }));
+        } else {
+          setScroll(SCROLL_TYPE.NONE);
+        }
       } else {
         setFavList((favList: IFavList) => ({
           ...favList,
