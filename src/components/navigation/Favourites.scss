@@ -19,6 +19,13 @@
         color:#ffffff;
         margin: 36px 10px;
     }
+    .title{
+        width: 90%;
+        font-size: 16px;
+        max-height: 18px;
+        overflow: hidden;
+        cursor: pointer;
+    }
         }
   
   /* If the screen size is 600px or less, set the font-size of <div> to 30px */
@@ -29,6 +36,13 @@
         line-height: 36px;
         color:#ffffff;
         margin: 36px 10px;
+        }
+        .title{
+            width: 90%;
+            font-size: 12px !important;
+            max-height: 18px;
+            overflow: hidden;
+            cursor: pointer;
         }
     }
     
