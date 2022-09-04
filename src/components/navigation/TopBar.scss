@@ -6,13 +6,17 @@
     width: 100%;
     overflow: hidden;
     margin-left: 20%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding-left: 5%;
+    padding-top: 1%;
 
     .header {
         font-family: 'ProximaNova';
         font-size: 30px;
         line-height: 36px;
         color: #1A1919;
-        margin: 36px;
     }
 
     .tabs-container{
