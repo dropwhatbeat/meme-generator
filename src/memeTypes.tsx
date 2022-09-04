@@ -25,3 +25,8 @@ export interface IFavList {
 export interface IMemeType {
   [key: string]: string
 }
+
+export enum SCROLL_TYPE {
+  UP = "UP",
+  DOWN = "DOWN",
+}

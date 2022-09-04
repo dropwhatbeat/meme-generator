@@ -10,6 +10,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
     /* If the screen size is 601px or more, set the font-size of <div> to 80px */
     @media only screen and (min-width: 801px) {
     .header {
@@ -17,7 +18,7 @@
         font-size: 30px;
         line-height: 36px;
         color:#ffffff;
-        margin: 15% 10px;
+        margin: 10% 10px;
     }
     .title{
         width: 90%;
@@ -59,7 +60,7 @@
     .fav-container  {
         overflow-y: auto;
         width: 90%;
-        padding: 10px;
+        padding: 10px 10px 30px 10px;
 
         .fav-box{
             display: flex;

@@ -1,7 +1,7 @@
 import "./MainPage.scss";
 import { useEffect, useState } from "react";
-import Favourites from "./navigation/Favourites";
-import { IFavList, IMemeType, TabsState } from "../memeTypes";
+import Favourites, { updateScroll } from "./navigation/Favourites";
+import { IFavList, IMemeType, SCROLL_TYPE, TabsState } from "../memeTypes";
 import MemeContainer from "./page-content/MemeContainer";
 import TopBar from "./navigation/TopBar";
 
@@ -32,10 +32,14 @@ const MainPage = () => {
         Object.keys(favList).includes(memeKey) &&
         memeValue !== (favList[memeKey] as string)
       ) {
+        updateScroll(SCROLL_TYPE.UP);
         let copy = { ...favList } as IMemeType;
         delete copy[memeKey];
         setFavList(() => ({ ...{ [memeKey]: memeValue }, ...copy }));
       } else {
+        if (memeValue !== (favList[memeKey] as string)) {
+          updateScroll(SCROLL_TYPE.DOWN);
+        }
         setFavList((favList: IFavList) => ({
           ...favList,
           ...{ [memeKey]: memeValue },
