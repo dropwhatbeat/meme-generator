@@ -4,7 +4,7 @@
 .main-bar{
     background-color: #042235;
     width: 20%;
-    height: 100vh;
+    min-height: 100vh;
     position: fixed;
     display: flex;
     flex-direction: column;
